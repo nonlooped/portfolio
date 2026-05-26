@@ -104,7 +104,7 @@ export default function RootLayout({
         description: "Full-stack developer and digital artist building creative interfaces and seamless user experiences.",
         sameAs: [
           "https://twitter.com/nonlooped",
-          "https://github.com/unloopedmido",
+          "https://github.com/nonlooped",
           "https://x.com/nonlooped",
         ],
       },

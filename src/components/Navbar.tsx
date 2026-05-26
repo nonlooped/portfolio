@@ -189,7 +189,7 @@ export default function Navbar() {
                 <div className="flex gap-6">
                   <Link
                     target="_blank"
-                    href="https://github.com/unloopedmido"
+                    href="https://github.com/nonlooped"
                     className="text-muted-foreground hover:text-foreground transition-colors font-medium"
                   >
                     GitHub

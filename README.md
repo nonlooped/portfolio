@@ -22,7 +22,7 @@ It showcases my projects, skills, and includes a contact form.
 ## Getting Started
 
 ```bash
-git clone https://github.com/unloopedmido/portfolio.git
+git clone https://github.com/nonlooped/portfolio.git
 cd portfolio
 pnpm install
 pnpm dev

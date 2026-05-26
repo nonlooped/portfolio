@@ -3,7 +3,7 @@
     "name": "🗡️ BladeForge",
     "description": "Live browser idle game with 1k+ players. Procedurally-generated swords, rarity & aura systems, luck-based progression loop, machine-driven property refinement, and clear frontend/backend separation. Highlights: shipped end-to-end, live user metrics, and iterative balance based on player data.",
     "technologies": ["TypeScript", "Next.js", "Express", "Prisma", "Radix UI"],
-    "github": "https://github.com/unloopedmido/bladeforge"
+    "github": "https://github.com/nonlooped/bladeforge"
   },
   {
     "name": "🧰 Lootils",
@@ -15,36 +15,36 @@
     "name": "🛠️ skyblock-ts",
     "description": "Fully-typed TypeScript SDK for Hypixel SkyBlock. Provides reliable, ergonomic access to auction pagination, profile lookups, and cached endpoints for production integrations - built for other devs to depend on.",
     "technologies": ["TypeScript", "Node.js", "pnpm", "ES Modules", "Fetch API"],
-    "github": "https://github.com/unloopedmido/skyblockts"
+    "github": "https://github.com/nonlooped/skyblockts"
   },
   {
     "name": "🧪 HyTools",
     "description": "High-performance toolset for SkyBlock players: auction price lookups, gear optimizers, and metadata inspectors built to streamline trading and grinding workflows. Focused on speed, UX, and reliable data handling.",
     "technologies": ["TypeScript", "Node.js", "Vite", "Vue.js", "TailwindCSS"],
-    "github": "https://github.com/unloopedmido/hytools"
+    "github": "https://github.com/nonlooped/hytools"
   },
   {
     "name": "🏷️ HyIntel",
     "description": "Server-side rendered auction viewer for Hypixel SkyBlock optimized for low-latency browsing. Parses Minecraft color codes into styled HTML, surfaces detailed item lore, and minimizes client JS for fast initial paint.",
     "technologies": ["Python", "FastAPI", "Jinja2", "TailwindCSS", "SQLite"],
-    "github": "https://github.com/unloopedmido/hyintel"
+    "github": "https://github.com/nonlooped/hyintel"
   },
   {
     "name": "👀 AnimeLens",
     "description": "Scalable Discord bot for anime & manga discovery: search, character info, and community commands with Prisma-backed persistence and modular command handling. Built to operate reliably across active servers.",
     "technologies": ["TypeScript", "Node.js", "Express", "discord.js", "Prisma"],
-    "github": "https://github.com/unloopedmido/animelens"
+    "github": "https://github.com/nonlooped/animelens"
   },
   {
     "name": "⌨️ Taplytics",
     "description": "Typing-test app with words & quotes modes, persistent performance dashboard, and accurate analytics. Showcases frontend polish, lightweight state management, and data visualization for user metrics.",
     "technologies": ["TypeScript", "Next.js", "TailwindCSS", "Chart.js", "LocalStorage"],
-    "github": "https://github.com/unloopedmido/taplytics"
+    "github": "https://github.com/nonlooped/taplytics"
   },
   {
     "name": "🔤 Lordle",
     "description": "Experimental Wordle-like prototype with infinite guesses and custom wordlists. Fast prototype demonstrating UI polish, rapid iteration, and front-end craftsmanship.",
     "technologies": ["TypeScript", "Next.js", "TailwindCSS", "shadcn/ui", "React Icons"],
-    "github": "https://github.com/unloopedmido/lordle"
+    "github": "https://github.com/nonlooped/lordle"
   }
 ]
