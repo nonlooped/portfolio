@@ -39,5 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.lock*
+
+# agent / design tooling (local only)
+.agents/
+.impeccable/
+skills-lock.json
+
+# bun (project uses npm)
 bun.lock
+bun.lockb
+.bun/

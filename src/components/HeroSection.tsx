@@ -1,90 +1,153 @@
 "use client";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
+import { DotPattern } from "@/components/ui/dot-pattern";
+import { ShineBorder } from "@/components/ui/shine-border";
+import { TechMarquee } from "@/components/TechMarquee";
+
+const stats = [
+  {
+    value: "50M+",
+    label: "Game visits",
+    source: "Roblox · 2018-2026",
+  },
+  {
+    value: "200+",
+    label: "Clients shipped for",
+    source: "Freelance · direct",
+  },
+  {
+    value: "8 yrs",
+    label: "In the craft",
+    source: "Since 2018",
+  },
+];
+
+function HeroStat({
+  value,
+  label,
+  source,
+}: {
+  value: string;
+  label: string;
+  source: string;
+}) {
+  return (
+    <li className="hero-stat group">
+      <div className="hero-stat-value">
+        <span>{value}</span>
+      </div>
+      <p className="hero-stat-label">{label}</p>
+      <p className="hero-stat-source">{source}</p>
+    </li>
+  );
+}
 
 export default function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [mounted, setMounted] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    setMounted(true);
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const contentY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, prefersReducedMotion ? 0 : 60]
+  );
 
   return (
     <section
-      id="about"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden px-6"
-      aria-label="About"
+      ref={sectionRef}
+      id="home"
+      className="relative min-h-[100dvh] flex flex-col overflow-hidden px-6 text-center"
+      aria-labelledby="hero-heading"
     >
-      {/* Subtle mouse-following gradient spotlight */}
-      {mounted && (
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-0 opacity-50 dark:opacity-20 transition-opacity duration-500"
-          animate={{
-            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, var(--muted), transparent 40%)`,
-          }}
-          transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
-        />
+      <DotPattern
+        className="text-primary/25 dark:text-primary/30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_68%)]"
+        width={18}
+        height={18}
+        cr={1}
+      />
+
+      {!prefersReducedMotion && (
+        <>
+          <div
+            className="pointer-events-none absolute top-[18%] left-1/2 -translate-x-1/2 w-[min(95vw,700px)] h-[min(95vw,700px)] rounded-full bg-primary/25 blur-[130px] animate-float-slow"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute bottom-[10%] right-[-10%] w-[min(50vw,360px)] h-[min(50vw,360px)] rounded-full bg-accent/20 blur-[100px]"
+            aria-hidden
+          />
+        </>
       )}
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-12 md:mt-20">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full flex flex-col items-center"
-        >
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] leading-[0.9] font-black tracking-tighter uppercase text-foreground flex flex-col items-center">
-            <span className="block hover:-translate-y-2 transition-transform duration-300 cursor-default">
-              Artist
-            </span>
-            <span
-              className="block text-transparent italic font-serif lowercase text-5xl sm:text-6xl md:text-7xl lg:text-[8rem] hover:text-foreground transition-colors duration-500 cursor-default py-2"
-              style={{
-                WebkitTextStrokeWidth: "2px",
-                WebkitTextStrokeColor: "var(--foreground)",
-              }}
-            >
-              with creativity
-            </span>
-            <span className="block hover:-translate-y-2 transition-transform duration-300 cursor-default">
-              For Days.
-            </span>
-          </h1>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="mt-10 md:mt-14 text-lg md:text-xl text-muted-foreground max-w-2xl font-mono uppercase tracking-widest px-4"
-        >
-          Full-Stack Developer & Designer
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-16 md:mt-24"
-        >
-          <a
-            href="#projects"
-            className="group relative flex items-center justify-center w-28 h-28 md:w-32 md:h-32 rounded-full border border-foreground/20 hover:border-foreground/60 transition-colors duration-300 overflow-hidden"
-          >
-            <span className="text-xs md:text-sm font-medium tracking-widest uppercase group-hover:scale-110 transition-transform duration-300">
-              Explore
-            </span>
-            {/* Rotating border effect */}
-            <div className="absolute inset-0 rounded-full border-t-2 border-foreground opacity-30 animate-[spin_4s_linear_infinite]"></div>
-          </a>
-        </motion.div>
+      <div
+        className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+        aria-hidden
+      >
+        <span className="text-display text-[clamp(5rem,20vw,14rem)] font-black uppercase text-primary/[0.06] dark:text-primary/[0.09] leading-none select-none">
+          Design
+        </span>
       </div>
+
+      <motion.div
+        style={prefersReducedMotion ? undefined : { y: contentY }}
+        className="relative z-10 section-wrap flex flex-col items-center justify-center flex-1 w-full pt-[5.5rem] pb-8 gap-8 md:gap-10"
+      >
+        <h1
+          id="hero-heading"
+          className="flex flex-col items-center leading-[0.88] max-w-5xl"
+        >
+          <span className="text-display text-[clamp(3.25rem,11vw,6rem)] font-black uppercase text-foreground hover:-translate-y-1 transition-transform duration-300 cursor-default">
+            Designer
+          </span>
+          <span className="font-sans italic font-medium lowercase text-[clamp(2rem,6.5vw,4.25rem)] text-primary tracking-tight py-2 md:py-3">
+            with imagination
+          </span>
+          <span className="text-display text-[clamp(3.25rem,11vw,6rem)] font-black uppercase text-foreground hover:-translate-y-1 transition-transform duration-300 cursor-default">
+            For years.
+          </span>
+        </h1>
+
+        <p className="text-base md:text-lg text-muted-foreground max-w-xl text-prose leading-relaxed -mt-2">
+          Full-stack builds from Roblox worlds to live web apps. I ship the
+          whole thing.
+        </p>
+
+        <ul className="hero-stats" aria-label="Experience highlights">
+          {stats.map((stat) => (
+            <HeroStat key={stat.label} {...stat} />
+          ))}
+        </ul>
+
+        <div className="w-full max-w-5xl [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] py-1">
+          <TechMarquee />
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-4">
+          <ShineBorder>
+            <a href="#projects" className="focus-ring btn-primary">
+              View work
+            </a>
+          </ShineBorder>
+          <a
+            href="mailto:cored.developments@gmail.com"
+            className="focus-ring btn-secondary"
+          >
+            Email me
+          </a>
+        </div>
+      </motion.div>
     </section>
   );
 }

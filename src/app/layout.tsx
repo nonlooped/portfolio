@@ -1,39 +1,47 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Figtree, JetBrains_Mono, Unbounded } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const unbounded = Unbounded({
+  variable: "--font-unbounded",
   subsets: ["latin"],
+  weight: ["700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 const siteUrl = "https://thelooped.tech";
 
+const description =
+  "Looped ships full-stack TypeScript products: live games, productivity apps, SDKs, and interfaces with performance and craft built in.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Looped | Full-Stack Developer & Creative Artist",
+    default: "Looped | Full-Stack Developer & Digital Artist",
     template: "%s | Looped",
   },
-  description:
-    "Looped is a full-stack developer and digital artist passionate about building seamless user experiences, interactive web apps, and creative interfaces.",
+  description,
   keywords: [
     "Looped",
     "Full-Stack Developer",
     "Portfolio",
-    "Software Engineer",
-    "Creative Coder",
-    "UI/UX",
+    "TypeScript",
     "Next.js",
-    "React",
-    "TailwindCSS",
-    "Open Source",
+    "Creative Coder",
+    "UI Engineering",
   ],
   authors: [{ name: "Looped", url: siteUrl }],
   creator: "Looped",
@@ -46,28 +54,22 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
   openGraph: {
-    title: "Looped | Full-Stack Developer & Creative Artist",
-    description:
-      "Portfolio of Looped - a full-stack developer and digital artist building creative interfaces and seamless user experiences.",
+    title: "Looped | Full-Stack Developer & Digital Artist",
+    description,
     url: siteUrl,
     siteName: "Looped Portfolio",
     images: [
-      { url: "/logo.png", width: 500, height: 500, alt: "Looped Logo" },
-      { url: "/full.png", width: 1200, height: 630, alt: "Looped Full Preview" },
+      { url: "/logo.png", width: 500, height: 500, alt: "Looped logo" },
+      { url: "/full.png", width: 1200, height: 630, alt: "Looped portfolio preview" },
     ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Looped | Full-Stack Developer & Creative Artist",
-    description:
-      "My Portfolio - Looped - full-stack developer and digital artist building seamless user experiences.",
+    title: "Looped | Full-Stack Developer & Digital Artist",
+    description,
     creator: "@nonlooped",
     images: ["https://thelooped.tech/full.png"],
   },
@@ -77,7 +79,12 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-import { ThemeProvider } from "@/components/ThemeProvider";
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#141414" },
+  ],
+};
 
 export default function RootLayout({
   children,
@@ -92,7 +99,7 @@ export default function RootLayout({
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
         name: "Looped Portfolio",
-        description: "Full-stack developer and creative artist portfolio.",
+        description,
         publisher: { "@id": `${siteUrl}/#person` },
       },
       {
@@ -101,12 +108,8 @@ export default function RootLayout({
         name: "Looped",
         url: siteUrl,
         jobTitle: "Full-Stack Developer",
-        description: "Full-stack developer and digital artist building creative interfaces and seamless user experiences.",
-        sameAs: [
-          "https://twitter.com/nonlooped",
-          "https://github.com/nonlooped",
-          "https://x.com/nonlooped",
-        ],
+        description,
+        sameAs: ["https://github.com/nonlooped", "https://x.com/nonlooped"],
       },
     ],
   };
@@ -114,7 +117,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${unbounded.variable} ${figtree.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <script
           type="application/ld+json"
