@@ -68,11 +68,11 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="home"
-      className="relative min-h-[100dvh] flex flex-col overflow-hidden px-6 text-center"
+      className="relative min-h-[100dvh] flex flex-col overflow-x-clip px-6 text-center"
       aria-labelledby="hero-heading"
     >
       <DotPattern
-        className="text-primary/25 dark:text-primary/30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_68%)]"
+        className="text-primary/25 dark:text-primary/30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_50%)]"
         width={18}
         height={18}
         cr={1}

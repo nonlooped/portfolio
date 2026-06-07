@@ -43,6 +43,7 @@ next-env.d.ts
 # agent / design tooling (local only)
 .agents/
 .impeccable/
+PRODUCT.md
 skills-lock.json
 
 # bun (project uses npm)
