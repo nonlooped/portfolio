@@ -3,6 +3,8 @@ import { Figtree, JetBrains_Mono, Unbounded } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { buildSiteJsonLd } from "@/lib/json-ld";
+import { siteConfig } from "@/lib/site";
 
 const unbounded = Unbounded({
   variable: "--font-unbounded",
@@ -22,59 +24,59 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const siteUrl = "https://thelooped.tech";
-
-const description =
-  "Looped ships full-stack TypeScript products: live games, productivity apps, SDKs, and interfaces with performance and craft built in.";
+const { url, title, description, name, locale, twitter } = siteConfig;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(url),
   title: {
-    default: "Looped | Full-Stack Developer & Digital Artist",
-    template: "%s | Looped",
+    default: title,
+    template: `%s | ${name}`,
   },
   description,
-  keywords: [
-    "Looped",
-    "Full-Stack Developer",
-    "Portfolio",
-    "TypeScript",
-    "Next.js",
-    "Creative Coder",
-    "UI Engineering",
-  ],
-  authors: [{ name: "Looped", url: siteUrl }],
-  creator: "Looped",
-  publisher: "Looped",
+  applicationName: name,
+  authors: [{ name, url }],
+  creator: name,
+  publisher: name,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
-    title: "Looped | Full-Stack Developer & Digital Artist",
+    title,
     description,
-    url: siteUrl,
-    siteName: "Looped Portfolio",
-    images: [
-      { url: "/logo.png", width: 500, height: 500, alt: "Looped logo" },
-      { url: "/full.png", width: 1200, height: 630, alt: "Looped portfolio preview" },
-    ],
-    locale: "en_US",
+    url,
+    siteName: `${name} Portfolio`,
+    locale,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Looped | Full-Stack Developer & Digital Artist",
+    title,
     description,
-    creator: "@nonlooped",
-    images: ["https://thelooped.tech/full.png"],
+    site: twitter.handle,
+    creator: twitter.handle,
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: url,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
   category: "technology",
 };
@@ -91,28 +93,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": `${siteUrl}/#website`,
-        url: siteUrl,
-        name: "Looped Portfolio",
-        description,
-        publisher: { "@id": `${siteUrl}/#person` },
-      },
-      {
-        "@type": "Person",
-        "@id": `${siteUrl}/#person`,
-        name: "Looped",
-        url: siteUrl,
-        jobTitle: "Full-Stack Developer",
-        description,
-        sameAs: ["https://github.com/nonlooped", "https://x.com/nonlooped"],
-      },
-    ],
-  };
+  const jsonLd = buildSiteJsonLd();
 
   return (
     <html lang="en" suppressHydrationWarning>
