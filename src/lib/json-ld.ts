@@ -26,6 +26,7 @@ export function buildSiteJsonLd() {
         description,
         isPartOf: { "@id": `${url}/#website` },
         about: { "@id": `${url}/#person` },
+        mainEntity: { "@id": `${url}/#person` },
         inLanguage: "en-US",
       },
       {
