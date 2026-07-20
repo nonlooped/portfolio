@@ -6,7 +6,7 @@ export const siteConfig = {
     "Full-stack developer and digital artist. Roblox worlds to live web apps — 50M+ game visits, 200+ clients, 8 years shipping TypeScript products end to end.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-    "https://thelooped.tech",
+    "https://looped.is-a.dev",
   locale: "en_US",
   email: "cored.developments@gmail.com",
   twitter: {

@@ -1,10 +1,10 @@
 # My Portfolio
 
-Personal portfolio for [Looped](https://thelooped.tech/) — full-stack developer and digital artist. Built with Next.js and Tailwind CSS.
+Personal portfolio for [Looped](https://looped.is-a.dev/) — full-stack developer and digital artist. Built with Next.js and Tailwind CSS.
 
 ## Live Demo
 
-<https://thelooped.tech/>
+<https://looped.is-a.dev/>
 
 ## Tech Stack
 
@@ -49,7 +49,7 @@ Open <http://localhost:3000> in your browser.
 
 | Variable | Description |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (defaults to `https://thelooped.tech`) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (defaults to `https://looped.is-a.dev`) |
 
 ## Build & Deploy
 
