@@ -79,6 +79,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   category: "technology",
+  verification: {
+    google: "E3FZQanOYF_ixi6Bg6iS9AwDgJ6qhML9mDEAT9HWIrQ",
+  },
 };
 
 export const viewport: Viewport = {
